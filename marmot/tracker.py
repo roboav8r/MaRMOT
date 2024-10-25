@@ -302,9 +302,11 @@ class TBDTracker(Node):
         for trk in self.trks:
             trk.predict(self, self.dets_msg.header.stamp)
 
-    def update_tracks(self):
+    def update_tracks(self, detector_name):
         for match in self.matches:
+            # self.get_logger().info(f"{detector_name} callback: Track {self.trks[match[1]].trk_id} ({self.trks[match[1]].track_conf})% at ({self.trks[match[1]].pos[0]},{self.trks[match[1]].pos[1]},{self.trks[match[1]].pos[2]}) matched to det at ({self.dets[match[0]].pos[0]},{self.dets[match[0]].pos[1]},{self.dets[match[0]].pos[2]})")
             self.trks[match[1]].update(self.dets[match[0]],self)
+            # self.get_logger().info(f"Post-update conf: {self.trks[match[1]].track_conf}")
 
     def det_callback(self, det_array_msg, detector_name):
        
@@ -323,7 +325,7 @@ class TBDTracker(Node):
         compute_assignment(self, detector_name)
 
         # UPDATE tracks with assigned detections
-        self.update_tracks()
+        self.update_tracks(detector_name)
 
         # UPDATE unmatched tracks (missed detections)
         for i, trk in enumerate(self.trks):
@@ -333,6 +335,7 @@ class TBDTracker(Node):
                 continue
 
             if i not in self.matches[:,1]: # If track is unmatched, handle it as a missed detection
+                # self.get_logger().info(f"Track {trk.trk_id} at ({trk.pos[0]},{trk.pos[1]},{trk.pos[2]})- no detections. Confidence {trk.track_conf}")
 
                 trk.metadata = det_array_msg.metadata
 
@@ -340,6 +343,8 @@ class TBDTracker(Node):
                     trk.track_conf *= (1 - self.detectors[detector_name]['detection_params'][trk.det_class_str]['score_decay'])
                 else:
                     raise TypeError('Invalid track creation method: %s' % self.detectors[detector_name]['detection_params'][trk.det_class_str]['create_method'])                    
+
+                # self.get_logger().info(f"Track {trk.trk_id} - Posterior confidence {trk.track_conf}")
 
         # Manage unmatched tracks and detections
         delete_tracks(self)
