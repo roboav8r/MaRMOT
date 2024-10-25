@@ -51,16 +51,7 @@ class Track():
         self.time_updated = det.timestamp
 
         # Track management
-        self.track_management = {}
-        for detector in trkr.detector_names:
-            self.track_management[detector] = {}
-            self.track_management[detector]['track_conf'] = det.class_conf
-            if detector == det.detector_name:
-                self.track_management[detector]['n_cons_matches'] = 1
-                self.track_management[detector]['n_cons_misses'] = 0
-            else:
-                self.track_management[detector]['n_cons_matches'] = 0
-                self.track_management[detector]['n_cons_misses'] = 0                
+        self.track_conf = det.class_conf            
 
         # Semantic
         self.det_class_str = det.det_class_str # TODO - remove this if it isn't needed later on
@@ -199,18 +190,12 @@ class Track():
         self.time_updated = det.timestamp
 
         # Track management
-        self.track_management[det.detector_name]['n_cons_matches'] += 1
-        self.track_management[det.detector_name]['n_cons_misses'] = 0
-
-        if trkr.detectors[det.detector_name]['detection_params'][det.det_class_str]['create_method']=='count':
-            self.track_management[det.detector_name]['track_conf'] = det.class_conf
-        elif trkr.detectors[det.detector_name]['detection_params'][det.det_class_str]['create_method']=='conf':
-            if trkr.detectors[det.detector_name]['detection_params'][det.det_class_str]['score_update_function']=='multiply':
-                self.track_management[det.detector_name]['track_conf'] = 1 - ((1 - det.class_conf)*(1 - self.track_management[det.detector_name]['track_conf']))
-            elif trkr.detectors[det.detector_name]['detection_params'][det.det_class_str]['score_update_function']=='parallel_add':
-                self.track_management[det.detector_name]['track_conf'] = 1 - ((1 - det.class_conf)*(1 - self.track_management[det.detector_name]['track_conf']))/((1 - det.class_conf)+(1 - self.track_management[det.detector_name]['track_conf']))
-            else:
-                raise AttributeError('Invalid score update function.')
+        if trkr.detectors[det.detector_name]['detection_params'][det.det_class_str]['score_update_function']=='multiply':
+            self.track_conf = 1 - ((1 - det.class_conf)*(1 - self.track_conf))
+        elif trkr.detectors[det.detector_name]['detection_params'][det.det_class_str]['score_update_function']=='parallel_add':
+            self.track_conf = 1 - ((1 - det.class_conf)*(1 - self.track_conf))/((1 - det.class_conf)+(1 - self.track_conf))
+        else:
+            raise AttributeError('Invalid score update function.')
 
         # Update spatial state
         rot = gtsam.Rot3(det.pose.orientation.w,det.pose.orientation.x, det.pose.orientation.y, det.pose.orientation.z)

@@ -12,15 +12,12 @@ def is_track_active(tracker, track):
         if track.obj_class_str not in tracker.detectors[detector]['detection_classes']:
             continue
 
-        if (tracker.detectors[detector]['detection_params'][track.obj_class_str]['create_method']=='count' and 
-            track.track_management[detector]['n_cons_matches'] < tracker.detectors[detector]['detection_params'][track.obj_class_str]['n_create_min']):
-            track_is_active = False
-        elif (tracker.detectors[detector]['detection_params'][track.obj_class_str]['create_method']=='conf' and 
-              track.track_management[detector]['track_conf'] <= tracker.detectors[detector]['detection_params'][track.obj_class_str]['active_thresh']):
-            track_is_active = False
-        else:
+        if (tracker.detectors[detector]['detection_params'][track.obj_class_str]['create_method']=='conf' and 
+              track.track_conf >= tracker.detectors[detector]['detection_params'][track.obj_class_str]['active_thresh']):
             track_is_active = True
             break
+        else:
+            track_is_active = False
 
     return track_is_active
 
@@ -41,7 +38,7 @@ def publish_tracks(tracker, pub_name):
 
         # Add track information to message
         trk_msg.track_id = trk.trk_id
-        # trk_msg.track_confidence = trk.track_conf
+        trk_msg.track_confidence = trk.track_conf
         trk_msg.time_created = trk.time_created.to_msg()
         trk_msg.time_updated = trk.time_updated.to_msg()
 
@@ -101,7 +98,7 @@ def publish_tracks(tracker, pub_name):
             raise AttributeError('Invalid process model type.')
     
         # Add semantic information to message
-        # trk_msg.track_confidence = float(trk.track_conf) # TODO - this is only used for track management, remove from output?
+        trk_msg.track_confidence = float(trk.track_conf)
         trk_msg.class_confidence = float(trk.class_conf)
         trk_msg.class_string = trk.obj_class_str
 
@@ -188,11 +185,10 @@ def publish_scene(tracker, pub_name):
         att_md.value = '' 
         entity_msg.metadata.append(att_md)
 
-        # TODO - this is only used for track management, remove from output?
-        # trk_md = KeyValuePair()
-        # trk_md.key = 'track_score'
-        # trk_md.value = str(trk.track_conf)
-        # entity_msg.metadata.append(trk_md)
+        trk_md = KeyValuePair()
+        trk_md.key = 'track_score'
+        trk_md.value = str(trk.track_conf)
+        entity_msg.metadata.append(trk_md)
 
         tracker.scene_msg.entities.append(entity_msg)
     

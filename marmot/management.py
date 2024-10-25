@@ -11,9 +11,7 @@ def keep_track(trk, trkr):
         if trk.obj_class_str not in trkr.detectors[detector]['detection_classes']:
             continue
         
-        if (trkr.detectors[detector]['detection_params'][trk.obj_class_str]['delete_method']=='count' and trk.track_management[detector]['n_cons_misses'] >= trkr.detectors[detector]['detection_params'][trk.obj_class_str]['n_delete_max']):
-            keep_this_track = False
-        elif (trkr.detectors[detector]['detection_params'][trk.obj_class_str]['delete_method']=='conf' and trk.track_management[detector]['track_conf'] <= trkr.detectors[detector]['detection_params'][trk.obj_class_str]['delete_thresh']):
+        if (trkr.detectors[detector]['detection_params'][trk.obj_class_str]['delete_method']=='conf' and trk.track_conf <= trkr.detectors[detector]['detection_params'][trk.obj_class_str]['delete_thresh']):
             keep_this_track = False
 
     return keep_this_track

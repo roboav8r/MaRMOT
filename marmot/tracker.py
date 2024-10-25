@@ -91,10 +91,8 @@ class TBDTracker(Node):
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.detect_thresh', rclpy.Parameter.Type.DOUBLE)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.score_decay', rclpy.Parameter.Type.DOUBLE)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.score_update_function', rclpy.Parameter.Type.STRING)
-                self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.n_create_min', rclpy.Parameter.Type.INTEGER)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.delete_method', rclpy.Parameter.Type.STRING)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.delete_thresh', rclpy.Parameter.Type.DOUBLE)
-                self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.n_delete_max', rclpy.Parameter.Type.INTEGER)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.pos_obs_var',rclpy.Parameter.Type.DOUBLE_ARRAY)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.yaw_obs_var',rclpy.Parameter.Type.DOUBLE_ARRAY)
                 self.declare_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.object_class',rclpy.Parameter.Type.STRING)
@@ -114,16 +112,12 @@ class TBDTracker(Node):
                     self.detectors[detector]['detection_params'][det_cls]['detect_thresh'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.detect_thresh').get_parameter_value().double_value
                     self.detectors[detector]['detection_params'][det_cls]['score_decay'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.score_decay').get_parameter_value().double_value
                     self.detectors[detector]['detection_params'][det_cls]['score_update_function'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.score_update_function').get_parameter_value().string_value
-                elif self.detectors[detector]['detection_params'][det_cls]['create_method'] == 'count':
-                    self.detectors[detector]['detection_params'][det_cls]['n_create_min'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.n_create_min').get_parameter_value().integer_value
                 else:
                     raise TypeError('No track creation method: %s' % self.detectors[detector]['detection_params'][det_cls]['create_method'])
 
                 self.detectors[detector]['detection_params'][det_cls]['delete_method'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.delete_method').get_parameter_value().string_value
                 if self.detectors[detector]['detection_params'][det_cls]['delete_method'] == 'conf':
                     self.detectors[detector]['detection_params'][det_cls]['delete_thresh'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.delete_thresh').get_parameter_value().double_value
-                elif self.detectors[detector]['detection_params'][det_cls]['delete_method'] == 'count':
-                    self.detectors[detector]['detection_params'][det_cls]['n_delete_max'] = self.get_parameter('detectors.' + detector + '.detection_properties.' + det_cls + '.n_delete_max').get_parameter_value().integer_value
                 else:
                     raise TypeError('No track deletion method: %s' % self.detectors[detector]['detection_params'][det_cls]['delete_method'] )
 
@@ -341,11 +335,9 @@ class TBDTracker(Node):
             if i not in self.matches[:,1]: # If track is unmatched, handle it as a missed detection
 
                 trk.metadata = det_array_msg.metadata
-                if self.detectors[detector_name]['detection_params'][trk.det_class_str]['create_method'] == 'count':
-                    trk.track_management[detector_name]['n_cons_misses'] += 1
-                    trk.track_management[detector_name]['n_cons_matches'] = 0
-                elif self.detectors[detector_name]['detection_params'][trk.det_class_str]['create_method'] == 'conf':
-                    trk.track_management[detector_name]['track_conf'] -= self.detectors[detector_name]['detection_params'][trk.det_class_str]['score_decay']
+
+                if self.detectors[detector_name]['detection_params'][trk.det_class_str]['delete_method'] == 'conf':
+                    trk.track_conf *= (1 - self.detectors[detector_name]['detection_params'][trk.det_class_str]['score_decay'])
                 else:
                     raise TypeError('Invalid track creation method: %s' % self.detectors[detector_name]['detection_params'][trk.det_class_str]['create_method'])                    
 
