@@ -16,8 +16,13 @@ def iou3d_points(x, y, z, l, w, h, yaw):
                        [x+(l/2)*np.cos(yaw) + (w/2)*np.sin(yaw), y + (l/2)*np.sin(yaw) - (w/2)*np.cos(yaw), z-h/2],
                        [x+(l/2)*np.cos(yaw) - (w/2)*np.sin(yaw), y + (l/2)*np.sin(yaw) + (w/2)*np.cos(yaw), z-h/2]]).reshape(1,8,3)
 @jit
+def dist_2d(det_pos, track_pos):
+    # 2D Euclidean distance between positions
+    return np.linalg.norm(det_pos[0:2] - track_pos[0:2])
+
+@jit
 def dist_3d(det_pos, track_pos):
-    # Euclidean distance between positions
+    # 3D Euclidean distance between positions
     return np.linalg.norm(det_pos - track_pos)
 
 @jit
@@ -80,7 +85,10 @@ def compute_cost_matrix(tracker,detector_name):
                 continue
 
             # If classes do match, compute cost/affinity as appropriate and assign to cost matrix
-            if tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='dist_3d':
+            if tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='dist_2d':
+                tracker.cost_matrix[ii,jj] += dist_2d(det.pos[:,0], trk.spatial_state.mean()[0:3])
+                
+            elif tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='dist_3d':
                 tracker.cost_matrix[ii,jj] += dist_3d(det.pos[:,0], trk.spatial_state.mean()[0:3])
             
             elif tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='iou_3d':
