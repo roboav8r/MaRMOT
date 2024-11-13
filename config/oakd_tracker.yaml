@@ -19,7 +19,8 @@ tbd_tracker_node:
             queue_size: 10
 
     object_properties: 
-      object_classes: ["person", "bicycle","car","motorbike","aeroplane","bus","train","truck","boat","traffic light","fire hydrant","stop sign","parking meter","bench","bird","cat","dog","horse","sheep","cow","elephant","bear","zebra","giraffe","backpack","umbrella","handbag","tie","suitcase","frisbee","skis","snowboard","sports ball","kite","baseball bat","baseball glove","skateboard","surfboard","tennis racket","bottle","wine glass","cup","fork","knife","spoon","bowl","banana","apple","sandwich","orange","broccoli","carrot","hot dog","pizza","donut","cake","chair","sofa","pottedplant","bed","diningtable","toilet","tvmonitor","laptop","mouse","remote","keyboard","cell phone","microwave","oven","toaster","sink","refrigerator","book","clock","vase","scissors","teddy bear","hair drier","toothbrush"]
+      object_classes: ["person", "bicycle","car","motorbike","bus","truck","traffic light","fire hydrant","stop sign","backpack","umbrella","handbag","sports ball","bottle","wine glass","cup","bowl","banana","apple","sandwich","orange","broccoli","carrot","hot dog","pizza","donut","cake","chair","tvmonitor","laptop","mouse","remote","keyboard","cell phone","book"]
+      
       person:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
@@ -28,33 +29,16 @@ tbd_tracker_node:
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .25
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .001
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       bicycle:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       car:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
@@ -63,15 +47,7 @@ tbd_tracker_node:
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       motorbike:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
@@ -80,645 +56,88 @@ tbd_tracker_node:
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      aeroplane:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       bus:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      train:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       truck:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      boat:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       traffic light:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       fire hydrant:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       stop sign:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      parking meter:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      bench:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      bird:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      cat:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      dog:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      horse:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      sheep:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      cow:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      elephant:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      bear:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      zebra:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      giraffe:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       backpack:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       umbrella:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       handbag:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      tie:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      suitcase:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      frisbee:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      skis:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      snowboard:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       sports ball:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      kite:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      baseball bat:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      baseball glove:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      skateboard:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      surfboard:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      tennis racket:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       bottle:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
@@ -728,1320 +147,713 @@ tbd_tracker_node:
           length: 0.05
           width: 0.05
           height: 0.1
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       wine glass:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       cup:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      fork:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      knife:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      spoon:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       bowl:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       banana:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       apple:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       sandwich:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       orange:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       broccoli:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       carrot:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       hot dog:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       pizza:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       donut:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       cake:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       chair:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      sofa:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      pottedplant:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      bed:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      diningtable:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      toilet:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       tvmonitor:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       laptop:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       mouse:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       remote:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       keyboard:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       cell phone:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      microwave:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      oven:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      toaster:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      sink:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      refrigerator:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
       book:
           model_type: 'cvcy_obj'
           yaw_proc_var: [1.]
           size_proc_var: [1., 1., 1.]
           vel_proc_var: [1., .5, .5]
-          
           length: 0.25
           width: 0.25
           height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      clock:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      vase:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      scissors:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      teddy bear:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      hair drier:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
-      toothbrush:
-          model_type: 'cvcy_obj'
-          yaw_proc_var: [1.]
-          size_proc_var: [1., 1., 1.]
-          vel_proc_var: [1., .5, .5]
-          
-          length: 0.25
-          width: 0.25
-          height: 0.5
-          create_method: 'conf'
-          delete_method: 'conf'
-          active_thresh: .75
-          delete_thresh: .15
-          detect_thresh: .15
-          score_update_function: 'parallel_add'
-          score_decay: .01
-          sim_metric: 'dist_3d'
-          match_thresh: 2.0
+
 
     detectors:
       #Declare names of detectors upfront
-      detector_names: ['oakd']
+      detector_names: ['lidar_2d','oakd']
+
+      lidar_2d:
+        topic: 'converted_lidar_detections'
+        msg_type: 'Detections3D'
+        detector_type: 'pos_2d'
+        detection_classes: ["person"]
+        detection_classes_ignore: ['']
+        detection_properties:
+            person:
+                pos_obs_var: [.25, .25, .1]
+                yaw_obs_var: [.1]
+                size_obs_var: [.1, .1, .1]
+                object_class: 'person'
+                create_method: 'count'
+                delete_method: 'count'
+                sim_metric: 'dist_3d'
+                match_thresh: 1.0
 
       # For each named detector, give detector model information
       oakd:
-        topic: 'converted_detections'
+        topic: 'converted_visual_detections'
         msg_type: 'Detections3D'
         detector_type: 'pos_3d'
         detection_classes: ["person", "bicycle","car","motorbike","aeroplane","bus","train","truck","boat","traffic light","fire hydrant","stop sign","parking meter","bench","bird","cat","dog","horse","sheep","cow","elephant","bear","zebra","giraffe","backpack","umbrella","handbag","tie","suitcase","frisbee","skis","snowboard","sports ball","kite","baseball bat","baseball glove","skateboard","surfboard","tennis racket","bottle","wine glass","cup","fork","knife","spoon","bowl","banana","apple","sandwich","orange","broccoli","carrot","hot dog","pizza","donut","cake","chair","sofa","pottedplant","bed","diningtable","toilet","tvmonitor","laptop","mouse","remote","keyboard","cell phone","microwave","oven","toaster","sink","refrigerator","book","clock","vase","scissors","teddy bear","hair drier","toothbrush"]
+        detection_classes_ignore: ['aeroplane', 'train', 'boat', 'parking meter', 'bench', 'bird', 'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear', 'zebra', 'giraffe', 'tie', 'suitcase', 'frisbee', 'skis', 'snowboard', 'kite', 'baseball bat', 'baseball glove', 'skateboard', 'surfboard', 'tennis racket', 'fork', 'knife', 'spoon', 'sofa', 'pottedplant', 'bed', 'diningtable', 'toilet', 'microwave', 'oven', 'toaster', 'sink', 'refrigerator', 'clock', 'vase', 'scissors', 'teddy bear', 'hair drier', 'toothbrush']
         detection_properties:
             person:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'person'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             bicycle:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'bicycle'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             car:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'car'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             motorbike:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'motorbike'
-                ignore: False
-            aeroplane:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'aeroplane'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             bus:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'bus'
-                ignore: False
-            train:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'train'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             truck:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'truck'
-                ignore: False
-            boat:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'boat'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             traffic light:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'traffic light'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             fire hydrant:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'fire hydrant'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             stop sign:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'stop sign'
-                ignore: False
-            parking meter:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'parking meter'
-                ignore: False
-            bench:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'bench'
-                ignore: False
-            bird:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'bird'
-                ignore: False
-            cat:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'cat'
-                ignore: False
-            dog:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'dog'
-                ignore: False
-            horse:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'horse'
-                ignore: False
-            sheep:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'sheep'
-                ignore: False
-            cow:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'cow'
-                ignore: False
-            elephant:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'elephant'
-                ignore: False
-            bear:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'bear'
-                ignore: False
-            zebra:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'zebra'
-                ignore: False
-            giraffe:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'giraffe'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             backpack:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'backpack'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             umbrella:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'umbrella'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             handbag:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'handbag'
-                ignore: False
-            tie:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'tie'
-                ignore: False
-            suitcase:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'suitcase'
-                ignore: False
-            frisbee:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'frisbee'
-                ignore: False
-            skis:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'skis'
-                ignore: False
-            snowboard:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'snowboard'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             sports ball:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'sports ball'
-                ignore: False
-            kite:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'kite'
-                ignore: False
-            baseball bat:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'baseball bat'
-                ignore: False
-            baseball glove:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'baseball glove'
-                ignore: False
-            skateboard:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'skateboard'
-                ignore: False
-            surfboard:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'surfboard'
-                ignore: False
-            tennis racket:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'tennis racket'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             bottle:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'bottle'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             wine glass:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'wine glass'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             cup:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'cup'
-                ignore: False
-            fork:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'fork'
-                ignore: False
-            knife:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'knife'
-                ignore: False
-            spoon:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'spoon'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             bowl:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'bowl'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             banana:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'banana'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             apple:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'apple'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             sandwich:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'sandwich'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             orange:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'orange'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             broccoli:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'broccoli'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             carrot:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'carrot'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             hot dog:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'hot dog'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             pizza:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'pizza'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             donut:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'donut'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             cake:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'cake'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             chair:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'chair'
-                ignore: False
-            sofa:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'sofa'
-                ignore: False
-            pottedplant:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'pottedplant'
-                ignore: False
-            bed:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'bed'
-                ignore: False
-            diningtable:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'diningtable'
-                ignore: False
-            toilet:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'toilet'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             tvmonitor:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'tvmonitor'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             laptop:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'laptop'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             mouse:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'mouse'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             remote:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'remote'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             keyboard:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'keyboard'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             cell phone:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'cell phone'
-                ignore: False
-            microwave:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'microwave'
-                ignore: False
-            oven:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'oven'
-                ignore: False
-            toaster:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'toaster'
-                ignore: False
-            sink:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'sink'
-                ignore: False
-            refrigerator:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'refrigerator'
-                ignore: False
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
             book:
                 pos_obs_var: [1., 1., 1.]
                 yaw_obs_var: [1.]
                 size_obs_var: [1., 1., 1.]
                 object_class: 'book'
-                ignore: False
-            clock:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'clock'
-                ignore: False
-            vase:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'vase'
-                ignore: False
-            scissors:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'scissors'
-                ignore: False
-            teddy bear:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'teddy bear'
-                ignore: False
-            hair drier:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'hair drier'
-                ignore: False
-            toothbrush:
-                pos_obs_var: [1., 1., 1.]
-                yaw_obs_var: [1.]
-                size_obs_var: [1., 1., 1.]
-                object_class: 'toothbrush'
-                ignore: False
-
-
-        # # Spatial detector model - TODO generate this from process models, detector model name
-        # spatial_detector_model: [1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., # p_x
-        #                       0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., # p_y
-        #                       0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., # p_z
-        #                       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., # heading
-        #                       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., # length
-        #                       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., # width
-        #                       0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., # height
-        #                       0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.] # class_conf
-
-
-        # # Semantic detector model        
-        # # p(Z_label|X_class): 
-        # # columns are dets classes
-        # semantic_detector_model: [1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # person
-        #                         0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bicycle
-        #                         0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # car
-        #                         0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # motorbike
-        #                         0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # aeroplane
-        #                         0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bus
-        #                         0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # train
-        #                         0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # truck
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # boat
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # traffic light
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # fire hydrant
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # stop sign
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # parking meter
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bench
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bird
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # cat
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # dog
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # horse
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # sheep
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # cow
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # elephant
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bear
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # zebra
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # giraffe
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # backpack
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # umbrella
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # handbag
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # tie
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # suitcase
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # frisbee
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # skis
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # snowboard
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # sports ball
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # kite
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # baseball bat
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # baseball glove
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # skateboard
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # surfboard
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # tennis racket
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bottle
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # wine glass
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # cup
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # fork
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # knife
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # spoon
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bowl
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # banana
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # apple
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # sandwich
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # orange
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # broccoli
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # carrot
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # hot dog
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # pizza
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # donut
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # cake
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # chair
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # sofa
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # pottedplant
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # bed
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # diningtable
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # toilet
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # tvmonitor
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # laptop
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # mouse
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # remote
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # keyboard
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # cell phone
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # microwave
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # oven
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0., 0.,  # toaster
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0., 0.,  # sink
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0., 0.,  # refrigerator
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0., 0.,  # book
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 0.,  # clock
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0., 0.,  # vase
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0., 0.,  # scissors
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0., 0.,  # teddy bear
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1., 0.,  # hair drier
-        #                         0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 1.]  # toothbrush
+                create_method: 'conf'
+                delete_method: 'conf'
+                active_thresh: .25
+                delete_thresh: .15
+                detect_thresh: .15
+                score_update_function: 'parallel_add'
+                score_decay: .001
+                sim_metric: 'dist_3d'
+                match_thresh: 2.0
