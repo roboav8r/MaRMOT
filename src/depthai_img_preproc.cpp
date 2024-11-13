@@ -38,14 +38,18 @@ class DepthAIPreProc : public rclcpp::Node
       declare_parameter("tracker_frame",rclcpp::ParameterType::PARAMETER_STRING);
       declare_parameter("labels",rclcpp::ParameterType::PARAMETER_STRING_ARRAY);
       declare_parameter("nn_img_size", rclcpp::ParameterType::PARAMETER_INTEGER);
-      
-      detector_frame_ = get_parameter("detector_frame").as_string();
-      tracker_frame_ = get_parameter("tracker_frame").as_string();
-      labels_ = get_parameter("labels").as_string_array();
-      nn_img_size = get_parameter("nn_img_size").as_int();
+      declare_parameter("x_correction_factor", rclcpp::ParameterType::PARAMETER_DOUBLE);
+      declare_parameter("y_correction_factor", rclcpp::ParameterType::PARAMETER_DOUBLE);
 
-      tf_buffer_ =std::make_unique<tf2_ros::Buffer>(this->get_clock(),500ms);
-      tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+      this->detector_frame_ = get_parameter("detector_frame").as_string();
+      this->tracker_frame_ = get_parameter("tracker_frame").as_string();
+      this->labels_ = get_parameter("labels").as_string_array();
+      this->nn_img_size = get_parameter("nn_img_size").as_int();
+      this->x_corr_factor_ = get_parameter("x_correction_factor").as_double();
+      this->y_corr_factor_ = get_parameter("y_correction_factor").as_double();
+
+      this->tf_buffer_ =std::make_unique<tf2_ros::Buffer>(this->get_clock(),500ms);
+      this->tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
 
       // Block until transform becomes available
       this->tf_buffer_->canTransform(this->detector_frame_,this->tracker_frame_,tf2::TimePointZero, 30s);
@@ -89,6 +93,8 @@ class DepthAIPreProc : public rclcpp::Node
             this->pose_det_.pose = it->results[0].pose.pose;
             this->pose_det_.pose.position.y *= -1; // Fix OAK-D y-axis inversion / lefthand coord frame
             this->tf_buffer_->transform(this->pose_det_,this->pose_tracker_,this->tracker_frame_,tf2::TimePointZero,this->detector_frame_,200ms);
+            this->pose_tracker_.pose.position.x *= this->x_corr_factor_;
+            this->pose_tracker_.pose.position.y *= this->y_corr_factor_;
             this->det_msg_.pose = this->pose_tracker_.pose;
             this->det_msg_.bbox.center = this->pose_tracker_.pose;
             this->det_msg_.bbox.size.x = 0;
@@ -146,6 +152,8 @@ class DepthAIPreProc : public rclcpp::Node
     int max_dets_{250}; 
 
     std::vector<std::string> labels_;
+    double x_corr_factor_;
+    double y_corr_factor_;
 
     // OpenCV / vision processing
     int nn_img_size;
