@@ -16,8 +16,13 @@ def iou3d_points(x, y, z, l, w, h, yaw):
                        [x+(l/2)*np.cos(yaw) + (w/2)*np.sin(yaw), y + (l/2)*np.sin(yaw) - (w/2)*np.cos(yaw), z-h/2],
                        [x+(l/2)*np.cos(yaw) - (w/2)*np.sin(yaw), y + (l/2)*np.sin(yaw) + (w/2)*np.cos(yaw), z-h/2]]).reshape(1,8,3)
 @jit
+def dist_2d(det_pos, track_pos):
+    # 2D Euclidean distance between positions
+    return np.linalg.norm(det_pos[0:2] - track_pos[0:2])
+
+@jit
 def dist_3d(det_pos, track_pos):
-    # Euclidean distance between positions
+    # 3D Euclidean distance between positions
     return np.linalg.norm(det_pos - track_pos)
 
 @jit
@@ -67,7 +72,7 @@ def hungarian_matching(cost_matrix):
     # tracker.det_asgn_idx, tracker.trk_asgn_idx = list(row_idx), list(col_idx)
     return np.stack((row_idx, col_idx), axis=1)
 
-def compute_cost_matrix(tracker):
+def compute_cost_matrix(tracker,detector_name):
 
     tracker.cost_matrix = np.zeros((len(tracker.dets),len(tracker.trks)))
     
@@ -80,16 +85,19 @@ def compute_cost_matrix(tracker):
                 continue
 
             # If classes do match, compute cost/affinity as appropriate and assign to cost matrix
-            if tracker.obj_props[trk.obj_class_str]['sim_metric']=='dist_3d':
+            if tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='dist_2d':
+                tracker.cost_matrix[ii,jj] += dist_2d(det.pos[:,0], trk.spatial_state.mean()[0:3])
+                
+            elif tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='dist_3d':
                 tracker.cost_matrix[ii,jj] += dist_3d(det.pos[:,0], trk.spatial_state.mean()[0:3])
             
-            elif tracker.obj_props[trk.obj_class_str]['sim_metric']=='iou_3d':
+            elif tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='iou_3d':
                 det_points = iou3d_points(det.pos[0,0],det.pos[1,0],det.pos[2,0],det.size[0,0],det.size[1,0],det.size[2,0], det.yaw[0,0])
                 trk_points = iou3d_points(trk.spatial_state.mean()[0],trk.spatial_state.mean()[1],trk.spatial_state.mean()[2],trk.spatial_state.mean()[4],trk.spatial_state.mean()[5],trk.spatial_state.mean()[6], trk.spatial_state.mean()[3])
                 _, iou3d = box3d_overlap(torch.as_tensor(det_points,dtype=torch.float), torch.as_tensor(trk_points,dtype=torch.float))
                 tracker.cost_matrix[ii,jj] -= iou3d
                 
-            elif tracker.obj_props[trk.obj_class_str]['sim_metric']=='giou_3d':
+            elif tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric']=='giou_3d':
                 det_points = iou3d_points(det.pos[0,0],det.pos[1,0],det.pos[2,0],det.size[0,0],det.size[1,0],det.size[2,0], det.yaw[0,0])
                 trk_points = iou3d_points(trk.spatial_state.mean()[0],trk.spatial_state.mean()[1],trk.spatial_state.mean()[2],trk.spatial_state.mean()[4],trk.spatial_state.mean()[5],trk.spatial_state.mean()[6], trk.spatial_state.mean()[3])
                 int_vol, iou3d = box3d_overlap(torch.as_tensor(det_points,dtype=torch.float,device='cuda:0'), torch.as_tensor(trk_points,dtype=torch.float,device='cuda:0'))
@@ -100,9 +108,9 @@ def compute_cost_matrix(tracker):
                 tracker.cost_matrix[ii,jj] -= (iou3d - (conv_hull.volume - un_vol)/conv_hull.volume)
 
             else:
-                raise TypeError('Invalid similarity metric: %s' % tracker.obj_props[trk.obj_class_str]['sim_metric'])
+                raise TypeError('Invalid similarity metric: %s' % tracker.detectors[detector_name]['detection_params'][trk.obj_class_str]['sim_metric'])
 
-def solve_cost_matrix(tracker):
+def solve_cost_matrix(tracker, detector_name):
     
     # Compute assignment vectors: each vector contains indices of matched detections and matched tracks
     if tracker.assignment_algo == 'hungarian':
@@ -118,7 +126,11 @@ def solve_cost_matrix(tracker):
     # cost matrix: rows = detection index, columns = track index
     tracker.matches = []
     for m in tracker.matched_indices:
-        if (tracker.cost_matrix[m[0], m[1]] < tracker.obj_props[tracker.trks[m[1]].obj_class_str]['match_thresh']):
+        
+        if tracker.trks[m[1]].obj_class_str not in tracker.detectors[detector_name]['detection_classes']:
+            continue          
+
+        if (tracker.cost_matrix[m[0], m[1]] < tracker.detectors[detector_name]['detection_params'][tracker.trks[m[1]].obj_class_str]['match_thresh']):
             tracker.matches.append(m.reshape(1, 2))
             
     if len(tracker.matches) == 0: 
@@ -126,6 +138,6 @@ def solve_cost_matrix(tracker):
     
     else: tracker.matches = np.concatenate(tracker.matches, axis=0)
 
-def compute_assignment(tracker):    
-    compute_cost_matrix(tracker)
-    solve_cost_matrix(tracker)
+def compute_assignment(tracker,detector_name):    
+    compute_cost_matrix(tracker,detector_name)
+    solve_cost_matrix(tracker,detector_name)

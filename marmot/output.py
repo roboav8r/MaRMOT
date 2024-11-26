@@ -5,6 +5,22 @@ from tracking_msgs.msg import Track3D, Tracks3D
 from visualization_msgs.msg import Marker, MarkerArray
 from foxglove_msgs.msg import SceneEntity, SceneUpdate, ArrowPrimitive, CubePrimitive, TextPrimitive, KeyValuePair
 
+def is_track_active(tracker, track):
+
+    for detector in tracker.detectors.keys():
+
+        if track.obj_class_str not in tracker.detectors[detector]['detection_classes']:
+            continue
+
+        if (tracker.detectors[detector]['detection_params'][track.obj_class_str]['create_method']=='conf' and 
+              track.track_conf >= tracker.detectors[detector]['detection_params'][track.obj_class_str]['active_thresh']):
+            track_is_active = True
+            break
+        else:
+            track_is_active = False
+
+    return track_is_active
+
 def publish_tracks(tracker, pub_name):
     tracker.trks_msg = Tracks3D()
     tracker.trks_msg.header.frame_id = tracker.frame_id
@@ -14,14 +30,8 @@ def publish_tracks(tracker, pub_name):
     for trk in tracker.trks:
 
         # Check if tracklet meets track creation criteria
-        if tracker.obj_props[trk.obj_class_str]['create_method']=="count":
-            if trk.n_cons_matches < tracker.obj_props[trk.obj_class_str]['n_create_min']:
-                continue
-        elif tracker.obj_props[trk.obj_class_str]['create_method']=="conf":
-            if trk.track_conf < tracker.obj_props[trk.obj_class_str]['active_thresh']:        
-                continue
-        else:
-            raise TypeError('Invalid track creation method: %s' % tracker.obj_props[trk.obj_class_str]['create_method'])
+        if is_track_active(tracker, trk)==False:
+            continue
         
         # Create track message
         trk_msg = Track3D()
@@ -112,14 +122,8 @@ def publish_scene(tracker, pub_name):
     for trk in tracker.trks:
 
         # Check if tracklet meets track creation criteria
-        if tracker.obj_props[trk.obj_class_str]['create_method']=="count":
-            if trk.n_cons_matches < tracker.obj_props[trk.obj_class_str]['n_create_min']:
-                continue
-        elif tracker.obj_props[trk.obj_class_str]['create_method']=="conf":
-            if trk.track_conf < tracker.obj_props[trk.obj_class_str]['active_thresh']:        
-                continue
-        else:
-            raise TypeError('Invalid track creation method: %s' % tracker.obj_props[trk.obj_class_str]['create_method'])
+        if is_track_active(tracker, trk)==False:
+            continue
 
         # Create track message
         entity_msg = SceneEntity()
@@ -199,14 +203,8 @@ def publish_markers(tracker, pub_name):
     for trk in tracker.trks:
 
         # Check if tracklet meets track creation criteria
-        if tracker.obj_props[trk.obj_class_str]['create_method']=="count":
-            if trk.n_cons_matches < tracker.obj_props[trk.obj_class_str]['n_create_min']:
-                continue
-        elif tracker.obj_props[trk.obj_class_str]['create_method']=="conf":
-            if trk.track_conf < tracker.obj_props[trk.obj_class_str]['active_thresh']:        
-                continue
-        else:
-            raise TypeError('Invalid track creation method: %s' % tracker.obj_props[trk.obj_class_str]['create_method'])
+        if is_track_active(tracker, trk)==False:
+            continue
 
         # Create track message
         marker_msg = Marker()
@@ -254,27 +252,6 @@ def publish_markers(tracker, pub_name):
         txt_marker_msg.pose.position.y = trk.spatial_state.mean()[1]
         txt_marker_msg.pose.position.z = trk.spatial_state.mean()[2]
         txt_marker_msg.text = "%s-%.0f: %.0f %%" % (trk.obj_class_str, trk.trk_id, trk.class_conf*100)
-
-        # # Add metadata
-        # name_md = KeyValuePair()
-        # name_md.key = 'class_name'
-        # name_md.value = trk.obj_class_str
-        # entity_msg.metadata.append(name_md)
-
-        # score_md = KeyValuePair()
-        # score_md.key = 'class_score'
-        # score_md.value = str(trk.class_conf)
-        # entity_msg.metadata.append(score_md)
-
-        # att_md = KeyValuePair()
-        # att_md.key = 'attribute'
-        # att_md.value = '' 
-        # entity_msg.metadata.append(att_md)
-
-        # trk_md = KeyValuePair()
-        # trk_md.key = 'track_score'
-        # trk_md.value = str(trk.track_conf)
-        # entity_msg.metadata.append(trk_md)
 
         tracker.marker_array_msg.markers.append(marker_msg)
         tracker.marker_array_msg.markers.append(txt_marker_msg)
