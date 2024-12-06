@@ -26,8 +26,8 @@ def generate_launch_description():
         package='marmot',
         executable='depthai_preproc',
         name='left_depthai_preproc_node',
-        remappings=[('/depthai_detections','/left_oak/left_oak/nn/spatial_detections',
-                    '/converted_detections','/converted_left_oak_detections')],
+        remappings=[('/depthai_detections','/left_oak/left_oak/nn/spatial_detections'),
+                    ('/converted_detections','/converted_left_oak_detections')],
         output='screen',
         parameters=[tracker_config])
     ld.add_action(left_preproc_node)
@@ -36,8 +36,8 @@ def generate_launch_description():
         package='marmot',
         executable='depthai_preproc',
         name='right_depthai_preproc_node',
-        remappings=[('/depthai_detections','/right_oak/right_oak/nn/spatial_detections',
-                    '/converted_detections','/converted_right_oak_detections')],
+        remappings=[('/depthai_detections','/right_oak/right_oak/nn/spatial_detections'),
+                    ('/converted_detections','/converted_right_oak_detections')],
         output='screen',
         parameters=[tracker_config])
     ld.add_action(right_preproc_node)
