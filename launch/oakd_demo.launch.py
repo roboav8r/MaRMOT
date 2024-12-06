@@ -15,46 +15,28 @@ def generate_launch_description():
     ld = LaunchDescription()
 
     # Config files
-    cam_config = os.path.join(
-        get_package_share_directory('marmot'),
-        'config',
-        'oakd_cam.yaml'
-    )
     tracker_config = os.path.join(
-        get_package_share_directory('marmot'),
+        get_package_share_directory('ahg_smart_space'),
         'config',
-        'oakd_tracker.yaml'
+        'smart_space_tracker_params.yaml'
     )
-
-    # Static TF node
-    tf_node = Node(package = "tf2_ros", 
-                    executable = "static_transform_publisher",
-                    arguments = ["0", "0", "1.0", "0", "0", "0", "map", "oak-d-base-frame"]
-    )
-    ld.add_action(tf_node)
-
-    # Sensor node
-    cam_node = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([
-            PathJoinSubstitution([
-                FindPackageShare('depthai_ros_driver'),
-                'launch',
-                'rgbd_pcl.launch.py'
-            ])
-        ]),
-        launch_arguments={'params_file': cam_config }.items()
-    )
-    ld.add_action(cam_node)
 
     # Detector preprocessing node
-    preproc_node = Node(
+    left_preproc_node = Node(
         package='marmot',
         executable='depthai_preproc',
-        name='depthai_preproc_node',
-        remappings=[('/depthai_detections','/oak/nn/spatial_detections')],
-        output='screen',
-        parameters=[cam_config])    
-    ld.add_action(preproc_node)
+        name='left_depthai_preproc_node',
+        remappings=[('/depthai_detections','/left_oak/left_oak/nn/spatial_detections')],
+        output='screen')
+    ld.add_action(left_preproc_node)
+
+    right_preproc_node = Node(
+        package='marmot',
+        executable='depthai_preproc',
+        name='right_depthai_preproc_node',
+        remappings=[('/depthai_detections','/right_oak/right_oak/nn/spatial_detections')],
+        output='screen')
+    ld.add_action(right_preproc_node)
 
     # Tracker node
     trk_node = Node(
