@@ -27,7 +27,8 @@ def generate_launch_description():
         executable='depthai_preproc',
         name='left_depthai_preproc_node',
         remappings=[('/depthai_detections','/left_oak/left_oak/nn/spatial_detections')],
-        output='screen')
+        output='screen',
+        parameters=[tracker_config])
     ld.add_action(left_preproc_node)
 
     right_preproc_node = Node(
@@ -35,7 +36,8 @@ def generate_launch_description():
         executable='depthai_preproc',
         name='right_depthai_preproc_node',
         remappings=[('/depthai_detections','/right_oak/right_oak/nn/spatial_detections')],
-        output='screen')
+        output='screen',
+        parameters=[tracker_config])
     ld.add_action(right_preproc_node)
 
     # Tracker node
